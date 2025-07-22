@@ -1,0 +1,133 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedCare - Medical Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+  background-color: #f8f9fa; /* Light gray for a clean look */
+}
+
+.navbar {
+  background-color: #343a40; /* Dark gray for a modern navbar */
+}
+
+.navbar-brand, .nav-link, .footer {
+  color: white !important;
+}
+
+.hero {
+  background: linear-gradient(to right, #007bff, #17a2b8); /* Professional blue gradient */
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.footer {
+  background-color: #007bff; /* Consistent blue for footer */
+  padding: 10px;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#"><h6>Powered by</h6> <h3>Codrenix</h3></a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#inventory">Inventory</a></li>
+        <li class="nav-item"><a class="nav-link" href="#add">Add</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sell">Sell</a></li>
+        <li class="nav-item"><a class="nav-link" href="#search">Search</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Welcome to MedCare</h1>
+  <p>Your trusted medical store inventory system</p>
+</section>
+
+<section class="container py-5" id="inventory">
+  <h2 class="mb-4">Inventory</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-primary">
+      <tr><th>Name</th><th>Company</th><th>Price</th><th>Qty</th></tr>
+    </thead>
+    <tbody>
+      {% for item in inventory %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.company }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="container py-5" id="add">
+  <h2 class="mb-4">Add Medicine</h2>
+  <form method="POST" action="/add">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <input type="text" name="name" placeholder="Medicine Name" class="form-control" required />
+      </div>
+      <div class="col-md-6">
+        <input type="text" name="company" placeholder="Company Name" class="form-control" required />
+      </div>
+      <div class="col-md-6">
+        <input type="number" name="price" placeholder="Price" class="form-control" step="0.01" required />
+      </div>
+      <div class="col-md-6">
+        <input type="number" name="quantity" placeholder="Quantity" class="form-control" required />
+      </div>
+    </div>
+    <button class="btn btn-success mt-3">Add Medicine</button>
+  </form>
+</section>
+
+<section class="container py-5" id="sell">
+  <h2 class="mb-4">Sell Medicine</h2>
+  <form method="POST" action="/sell">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <input type="text" name="name" placeholder="Medicine Name" class="form-control" required />
+      </div>
+      <div class="col-md-6">
+        <input type="number" name="quantity" placeholder="Quantity to Sell" class="form-control" required />
+      </div>
+    </div>
+    <button class="btn btn-warning mt-3">Sell</button>
+  </form>
+</section>
+
+<section class="container py-5" id="search">
+  <h2 class="mb-4">Search Medicine</h2>
+  <form method="POST" action="/search">
+    <div class="row g-3">
+      <div class="col-md-12">
+        <input type="text" name="name" placeholder="Medicine Name" class="form-control" required />
+      </div>
+    </div>
+    <button class="btn btn-primary mt-3">Search</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p class="mb-0">&copy; 2025 Codrenix | Designed by Aatif</p>
+</footer>
+
+</body>
+</html>
